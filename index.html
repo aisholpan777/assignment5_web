@@ -1,0 +1,182 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Assignment 5 - JavaScript Basics</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="task1.js" defer></script>
+  <script src="task2.js" defer></script>
+  <script src="task3.js" defer></script>
+</head>
+<body>
+  <header>
+    <h1>Assignment #5: JS Basics</h1>
+    <p>DOM Manipulation & Events</p>
+    <nav aria-label="Task navigation">
+      <a href="#task1-section">Task 1: Game</a>
+      <a href="#task2-section">Task 2: Kanban</a>
+      <a href="#task3-section">Task 3: Tickets</a>
+    </nav>
+  </header>
+
+  <main>
+    <!-- TASK 1 -->
+    <section class="card" id="task1-section">
+      <h2>Task 1: Higher or Lower Game</h2>
+
+      <div class="game-stats">
+        <p>Lives: <span id="t1-lives">❤️ ❤️ ❤️</span></p>
+        <p>Current Streak: <span id="t1-streak">0</span></p>
+        <p>Best Streak: <span id="t1-best-streak">0</span></p>
+      </div>
+
+      <div class="game-board">
+        <p>Current Value:</p>
+        <strong id="t1-current-val">--</strong>
+        <p class="hint-text">Will the next number be HIGHER or LOWER?</p>
+
+        <div class="game-controls">
+          <button type="button" id="t1-btn-higher" class="btn btn-game">🔼 Higher</button>
+          <button type="button" id="t1-btn-lower" class="btn btn-game">🔽 Lower</button>
+        </div>
+
+        <p id="t1-message" class="message-box" role="status" aria-live="polite"></p>
+        <button type="button" id="t1-btn-restart" class="btn btn-restart hidden">Play Again</button>
+      </div>
+    </section>
+
+    <!-- TASK 2 -->
+    <section class="card" id="task2-section">
+      <h2>Task 2: Kanban Board</h2>
+
+      <div class="kanban-controls">
+        <input type="search" id="t2-search" placeholder="Search tasks..." aria-label="Search tasks" class="input-field">
+
+        <select id="t2-filter-tag" aria-label="Filter tasks by tag" class="input-field">
+          <option value="all">All Tags</option>
+          <option value="Frontend">Frontend</option>
+          <option value="Backend">Backend</option>
+          <option value="Design">Design</option>
+          <option value="Documentation">Documentation</option>
+        </select>
+
+        <select id="t2-sort" aria-label="Sort tasks by priority" class="input-field">
+          <option value="high">High Priority First</option>
+          <option value="low">Low Priority First</option>
+        </select>
+
+        <button type="button" id="t2-btn-add" class="btn">+ New Task</button>
+      </div>
+
+      <p id="t2-error-msg" class="error-text hidden" role="status" aria-live="polite"></p>
+
+      <div class="kanban-board-grid">
+        <div class="kanban-column" data-status="todo">
+          <h3>To Do (<span id="count-todo">0</span>)</h3>
+          <div class="kanban-cards-container" id="container-todo"></div>
+        </div>
+
+        <div class="kanban-column" data-status="inprogress">
+          <h3>In Progress (<span id="count-inprogress">0</span>/3)</h3>
+          <div class="kanban-cards-container" id="container-inprogress"></div>
+        </div>
+
+        <div class="kanban-column" data-status="done">
+          <h3>Done (<span id="count-done">0</span>)</h3>
+          <div class="kanban-cards-container" id="container-done"></div>
+        </div>
+      </div>
+
+      <div class="kanban-progress">
+        <p>Progress: <span id="t2-progress-text">0%</span></p>
+        <div class="progress-bar-bg" id="t2-progress-bar" role="progressbar" aria-label="Completed tasks" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+          <div id="t2-progress-fill" class="progress-bar-fill"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TASK 3 -->
+    <section class="card" id="task3-section">
+      <h2>Task 3: Ticket Builder Form</h2>
+
+      <div class="ticket-builder-layout">
+        <form id="ticket-form" novalidate>
+          <div id="form-error-summary" class="error-summary hidden" role="alert"></div>
+
+          <div class="form-group">
+            <label for="event-select">Event *</label>
+            <select id="event-select" name="event" required class="input-field" aria-describedby="err-event">
+              <option value="">Select an event...</option>
+              <option value="Tech Conference 2026">Tech Conference 2026</option>
+              <option value="JS Web Festival">JS Web Festival</option>
+              <option value="Design Workshop">Design Workshop</option>
+            </select>
+            <span class="field-error" id="err-event"></span>
+          </div>
+
+          <div class="form-group">
+            <label for="date-input">Date *</label>
+            <input type="date" id="date-input" name="date" required class="input-field" aria-describedby="err-date">
+            <span class="field-error" id="err-date"></span>
+          </div>
+
+          <div class="form-group">
+            <label for="type-select">Ticket Type *</label>
+            <select id="type-select" name="type" required class="input-field" aria-describedby="err-type">
+              <option value="">Select ticket type...</option>
+              <option value="Standard">Standard ($50)</option>
+              <option value="VIP">VIP ($120)</option>
+              <option value="Student">Student ($25)</option>
+            </select>
+            <span class="field-error" id="err-type"></span>
+          </div>
+
+          <div class="form-group">
+            <label for="qty-input">Quantity (max 5) *</label>
+            <input type="number" id="qty-input" name="quantity" min="1" max="5" step="1" value="1" required class="input-field" aria-describedby="err-quantity">
+            <span class="field-error" id="err-quantity"></span>
+          </div>
+
+          <div class="form-group">
+            <label for="name-input">Full Name *</label>
+            <input type="text" id="name-input" name="name" minlength="3" placeholder="e.g. Aisholpan" required class="input-field" aria-describedby="err-name">
+            <span class="field-error" id="err-name"></span>
+          </div>
+
+          <div class="form-group">
+            <label for="email-input">Email Address *</label>
+            <input type="email" id="email-input" name="email" placeholder="example@mail.com" required class="input-field" aria-describedby="err-email">
+            <span class="field-error" id="err-email"></span>
+          </div>
+
+          <div class="form-group">
+            <label for="promo-input">Promo Code (Optional)</label>
+            <input type="text" id="promo-input" name="promo" placeholder="PROMO10, VIP20" class="input-field" aria-describedby="err-promo">
+            <span class="field-error" id="err-promo"></span>
+          </div>
+
+          <button type="submit" id="t3-btn-submit" class="btn">Book Ticket</button>
+        </form>
+
+        <div class="ticket-preview-box">
+          <h3>Ticket Live Preview</h3>
+          <div class="ticket-card" id="ticket-preview" aria-live="polite">
+            <p><strong>Event:</strong> <span id="prev-event">Not selected</span></p>
+            <p><strong>Date:</strong> <span id="prev-date">Not selected</span></p>
+            <p><strong>Type:</strong> <span id="prev-type">Not selected</span></p>
+            <p><strong>Quantity:</strong> <span id="prev-qty">1</span></p>
+            <p><strong>Seats Left:</strong> <span id="prev-seats">--</span></p>
+            <p><strong>Guest:</strong> <span id="prev-name">Not specified</span></p>
+            <p><strong>Email:</strong> <span id="prev-email">Not specified</span></p>
+            <p><strong>Total Price:</strong> <span id="prev-price">$0.00</span></p>
+          </div>
+        </div>
+      </div>
+
+      <div id="ticket-result" class="result-box hidden" role="status"></div>
+    </section>
+  </main>
+</body>
+</html>
